@@ -1,0 +1,180 @@
+:root{
+  --color-i: #b1b1b1;
+  --color-link: #5c8293;
+  --color-text: #c4c5c9;
+  --bg-top: #eaeaea;
+  --bg-bottom: #f3eeea;
+  --bg-notification: #8edafc;
+  --bg-search-chat: #fafafa;
+  --bg-list-chat: #ffffff;
+  --bg-active: #e9ebeb;
+  --bg-message-send: #d5f9ba
+}
+
+body{
+  height: 100vh;
+  overflow: hidden;
+  background-image: linear-gradient(#009688 20%, #dbdbd2 20%);
+}
+
+img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+i{
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--color-i);  
+}
+
+
+/* layout dimension */
+.w-20{
+  width: 20%;
+}
+
+.w-40{
+  width: 40%;
+}
+
+.w-60{
+  width: 60%;
+}
+
+.w-80{
+  width: 80%;
+}
+
+.h-10{
+  height: 10%;
+}
+
+.h-10{
+  height: 10%;
+}
+
+.h-20{
+  height: 20%;
+}
+
+.h-80{
+  height: 80%;
+}
+
+.h-90{
+  height: 90%;
+}
+
+
+/* body */
+.container-custom{
+  width: 80%;
+  height: 95%;
+  margin: 20px auto;
+}
+
+
+/* aside top */
+aside .top .my-user{
+  background-color: var(--bg-top);
+}
+
+aside .top .my-user .my-data .my-avatar{
+  width: 50px;
+  height: 50px;
+}
+
+aside .top .my-notifications{
+  background-color: var(--bg-notification);
+}
+
+aside .top .my-notifications .notification{
+  width: 50px;
+  height: 50px;
+  background-color: #f2fbff;
+}
+
+aside .top .my-notifications .notification i{
+  color: var(--bg-notification);
+}
+
+aside .top .my-notifications .notification-update a{
+  color: var(--color-link);
+}
+/* /aside top */
+
+
+/* aside bottom */
+aside .bottom .search-chat{
+  background-color: var(--bg-search-chat);
+}
+
+aside .bottom .list-chat{
+  overflow-y: scroll;
+  background-color: var(--bg-list-chat);
+}
+
+aside .bottom .list-chat .chat{
+  height: 85px;
+}
+
+aside .bottom .list-chat .chat.active{
+  background-color: var(--bg-active);
+}
+
+aside .bottom .list-chat .chat .chat-img{
+  width: 60px;
+  height: 60px;
+}
+
+aside .bottom .list-chat .chat .chat-data{
+  width: calc(100% - 60px - 2rem);
+}
+
+aside .bottom .list-chat .chat .chat-data .chat-data-info span{
+  font-size: 1.2rem;
+}
+
+aside .bottom .list-chat .chat .chat-data .chat-data-info p,
+aside .bottom .list-chat .chat .chat-data .chat-data-hour span{
+  color: var(--color-text);
+}
+/* /aside bottom */
+
+
+/* chat selected */
+.chat-selected .top{
+  border-left: 1px solid var(--color-i);
+  background-color: var(--bg-top);
+}
+
+.chat-selected .top .user-data .user-img{
+  width: 50px;
+  height: 50px;
+}
+
+.chat-selected .top .user-data .user-data-info span{
+  font-size: 1.2rem;
+}
+
+.chat-selected .top .user-data .user-data-info p{
+  color: var(--color-text);
+}
+
+.chat-selected .chat-message{
+  overflow-y: scroll;
+  background-image: url('img/mine.jpg');
+}
+
+.chat-selected .chat-message .message-send{
+  width: 250px;
+  height: 50px;
+  background-color: var(--bg-message-send);
+}
+
+.chat-selected .bottom{
+  background-color: var(--bg-bottom);
+}
+/* /chat selected */

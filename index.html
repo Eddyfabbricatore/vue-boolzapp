@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CDN VueJs -->
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" 
+  integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  <title>Vue Boolzapp</title>
+</head>
+<body>
+
+  <div id="app" class="container-custom d-flex">
+    <aside class="w-40 h-100">
+
+      <div class="top w-100 h-20">
+        <div class="my-user d-flex justify-content-between align-items-center w-100 h-50">
+          <div class="my-data d-flex align-items-center">
+            <div class="my-avatar ms-2">
+              <img class="rounded-circle" src="img/avatar_io.jpg" alt="Mio Avatar">
+            </div>
+  
+            <span class="ms-2">Sofia</span>
+          </div>
+  
+          <div class="my-info me-4">
+            <i class="fa-solid fa-circle-notch me-3"></i>
+  
+            <i class="fa-solid fa-message me-3"></i>
+  
+            <i class="fa-solid fa-ellipsis-vertical"></i>
+          </div>
+        </div>
+  
+        <div class="my-notifications d-flex align-items-center w-100 h-50">
+          <div class="notification rounded-circle d-flex justify-content-center align-items-center ms-3">
+            <i class="fa-regular fa-bell-slash"></i>
+          </div>
+  
+          <div class="notification-update d-flex flex-column ms-2">
+            <span>Ricevi notifiche di nuovi messaggi</span>
+  
+            <a href="#">Attiva notifiche desktop</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom h-80">
+        <div class="search-chat d-flex align-items-center h-10">
+          <div class="input-group ms-1 me-1">
+            <span class="input-group-text" id="inputGroup-sizing-default"><i class="fa-solid fa-magnifying-glass"></i></span>
+            <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat">
+          </div>
+        </div>
+
+        <div class="list-chat h-90">
+          <div
+            class="chat d-flex align-items-center"
+            v-for="(contact, index) in contacts">
+            <div class="chat-img ms-3">
+              <img
+                class="rounded-circle"
+                :src="contact.avatar"
+                alt="contact.name">
+            </div>
+
+            <div class="chat-data d-flex justify-content-between ms-3">
+              <div class="chat-data-info d-flex flex-column">
+                <span>{{contact.name}}</span>
+
+                <p class="mb-0">{{contact.messages[0].message}}</p>
+              </div>
+
+              <div class="chat-data-hour">
+                <span class="me-1">{{contact.messages[0].date}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+    <div class="chat-selected w-60 h-100">
+      <div class="top d-flex justify-content-between align-items-center h-10">
+        <div class="user-data d-flex align-items-center ms-2">
+          <div class="user-img">
+            <img class="rounded-circle" src="img/avatar_1.jpg" alt="Avatar 1">
+          </div>
+
+          <div class="user-data-info d-flex flex-column ms-2">
+            <span></span>
+
+            <p class="mb-0">Ultimo accesso oggi alle 12:00</p>
+          </div>
+        </div>
+
+        <div class="user-info me-4">
+          <i class="fa-solid fa-magnifying-glass me-3"></i>
+
+          <i class="fa-solid fa-paperclip me-3"></i>
+
+          <i class="fa-solid fa-ellipsis-vertical"></i>
+        </div>
+      </div>
+
+      <div class="chat-message h-80">
+        <div class="message-send">
+        </div>
+
+        <div class="message-received">
+        </div>
+      </div>
+
+      <div class="bottom w-100 h-10">
+        <div class="row d-flex w-100 h-100 m-0">
+          <div class="col-1 d-flex justify-content-center align-items-center p-0">
+            <i class="fa-regular fa-face-smile"></i>
+          </div>
+
+          <div class="col-10 d-flex justify-content-center align-items-center p-0">
+            <input type="text" class="form-control" placeholder="Scrivi un nuovo messaggio">
+          </div>
+
+          <div class="col-1 d-flex justify-content-center align-items-center p-0">
+            <i class="fa-solid fa-microphone"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
