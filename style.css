@@ -29,6 +29,18 @@ i{
   color: var(--color-i);  
 }
 
+.float-left{
+  float: left;
+}
+
+.float-right{
+  float: right;
+}
+
+.hide{
+  display: none;
+}
+
 
 /* layout dimension */
 .w-20{
@@ -118,6 +130,7 @@ aside .bottom .list-chat{
 
 aside .bottom .list-chat .chat{
   height: 85px;
+  cursor: pointer;
 }
 
 aside .bottom .list-chat .chat.active{
@@ -164,14 +177,36 @@ aside .bottom .list-chat .chat .chat-data .chat-data-hour span{
 }
 
 .chat-selected .chat-message{
+  padding: 50px 70px;
   overflow-y: scroll;
   background-image: url('img/mine.jpg');
 }
 
-.chat-selected .chat-message .message-send{
+.chat-selected .chat-message .messages .message{
+  margin-bottom: 10px;
+  padding: 10px 5px;
+}
+
+.chat-selected .chat-message .messages .message-send .message{
   width: 250px;
   height: 50px;
   background-color: var(--bg-message-send);
+}
+
+.chat-selected .chat-message .messages .message::after{
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.chat-selected .chat-message .messages .message{
+  clear: both;
+}
+
+.chat-selected .chat-message .messages .message-received .message{
+  width: 250px;
+  height: 50px;
+  background-color: var(--bg-list-chat);
 }
 
 .chat-selected .bottom{

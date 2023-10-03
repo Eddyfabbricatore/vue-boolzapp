@@ -68,7 +68,9 @@
         <div class="list-chat h-90">
           <div
             class="chat d-flex align-items-center"
-            v-for="(contact, index) in contacts">
+            :class="{'active' : contact.visible}"
+            v-for="(contact, index) in contacts"
+            click="">
             <div class="chat-img ms-3">
               <img
                 class="rounded-circle"
@@ -80,11 +82,11 @@
               <div class="chat-data-info d-flex flex-column">
                 <span>{{contact.name}}</span>
 
-                <p class="mb-0">{{contact.messages[0].message}}</p>
+                <p class="mb-0">{{contact.messages[counter].message}}</p>
               </div>
 
               <div class="chat-data-hour">
-                <span class="me-1">{{contact.messages[0].date}}</span>
+                <span class="me-1">{{contact.messages[counter].date}}</span>
               </div>
             </div>
           </div>
@@ -93,17 +95,21 @@
 
     </aside>
 
-    <div class="chat-selected w-60 h-100">
-      <div class="top d-flex justify-content-between align-items-center h-10">
+    <div
+      class="chat-selected w-60 h-100"
+      :class="{'hide' : !contact.visible}"
+      v-for="(contact, index) in contacts">
+      <div
+        class="top d-flex justify-content-between align-items-center h-10 hide">
         <div class="user-data d-flex align-items-center ms-2">
           <div class="user-img">
-            <img class="rounded-circle" src="img/avatar_1.jpg" alt="Avatar 1">
+            <img class="rounded-circle" :src="contact.avatar" alt="contact.name">
           </div>
 
           <div class="user-data-info d-flex flex-column ms-2">
-            <span></span>
+            <span>{{contact.name}}</span>
 
-            <p class="mb-0">Ultimo accesso oggi alle 12:00</p>
+            <p class="mb-0">{{contact.messages[counter].date}}</p>
           </div>
         </div>
 
@@ -117,21 +123,43 @@
       </div>
 
       <div class="chat-message h-80">
-        <div class="message-send">
+        <div
+          class="messages"
+          v-for="message in contact.messages">
+          <div
+          class="message-send"
+          v-if="message.status === 'sent'">
+          <div
+            class="message float-right rounded">
+            <span>{{message.message}}</span>
+          </div>
         </div>
 
-        <div class="message-received">
+        <div
+          class="message-received"
+          v-else-if="message.status === 'received'">
+          <div
+            class="message float-left rounded">
+            <span>{{message.message}}</span>
+          </div>
+        </div>
         </div>
       </div>
 
-      <div class="bottom w-100 h-10">
+      <div
+        class="bottom w-100 h-10">
         <div class="row d-flex w-100 h-100 m-0">
           <div class="col-1 d-flex justify-content-center align-items-center p-0">
             <i class="fa-regular fa-face-smile"></i>
           </div>
 
           <div class="col-10 d-flex justify-content-center align-items-center p-0">
-            <input type="text" class="form-control" placeholder="Scrivi un nuovo messaggio">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Scrivi un nuovo messaggio"
+              v-model="newMessage"
+              keyup.enter="">
           </div>
 
           <div class="col-1 d-flex justify-content-center align-items-center p-0">
