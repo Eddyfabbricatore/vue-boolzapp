@@ -172,24 +172,44 @@ createApp({
   },
   methods:{
     changeChat(i){
+      console.log(i);
       this.contacts[this.counter].visible = false
 
       this.counter = i;
 
+      console.log(i);
+
       this.contacts[this.counter].visible = true;
     },
 
-    createNewMessage(){
+    getHour(dateMessage){
+      const d = new Date(dateMessage);
+      let hour = d.getHours();
+      let minute = d.getMinutes();
+
+      return hour + ':' + minute
+    },
+
+    createNewMessage(i){
       const createMessage = {
         date: new Date(),
         message: this.newMessage,
         status: 'sent'
       }
 
-      console.log(createMessage);
-      this.contacts.messages.include(createMessage);
+      this.contacts[i].messages.push(createMessage);
 
       this.newMessage = '';
+
+      setTimeout(() => {
+        const createMessageReceived = {
+          date: new Date(),
+          message: 'Ok',
+          status: 'received'
+        }
+  
+        this.contacts[i].messages.push(createMessageReceived);
+      }, 1000)
     }
   }
 }).mount('#app')

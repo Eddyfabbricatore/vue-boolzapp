@@ -88,11 +88,11 @@
                 <span>{{contact.name}}</span>
 
                 <p
-                  class="mb-0">{{contact.messages.message}}</p>
+                  class="mb-0">{{contacts[counter].messages[contacts[counter].messages.length - 1].message}}</p>
               </div>
 
               <div class="chat-data-hour">
-                <span class="me-1">{{contact.messages.date}}</span>
+                <span class="me-1">{{getHour(contacts[counter].messages[contacts[counter].messages.length - 1].date)}}</span>
               </div>
             </div>
           </div>          
@@ -115,7 +115,7 @@
           <div class="user-data-info d-flex flex-column ms-2">
             <span>{{contact.name}}</span>
 
-            <p class="mb-0">{{contact.messages[0].date}}</p>
+            <p class="mb-0">Ultimo accesso oggi alle {{getHour(contact.messages[0].date)}}</p>
           </div>
         </div>
 
@@ -138,6 +138,7 @@
             <div
               class="message d-flex align-items-center float-right rounded">
               <span>{{message.message}}</span>
+              <span class="float-right">{{getHour(message.date)}}</span>
             </div>
           </div>
 
@@ -147,6 +148,7 @@
             <div
               class="message d-flex align-items-center float-left rounded">
               <span>{{message.message}}</span>
+              <span class="float-right">{{getHour(message.date)}}</span>
             </div>
           </div>
         </div>
@@ -165,7 +167,7 @@
               class="form-control"
               placeholder="Scrivi un nuovo messaggio"
               v-model="newMessage"
-              @keyup.enter="createNewMessage">
+              @keyup.enter="createNewMessage(index)">
           </div>
 
           <div class="col-1 d-flex justify-content-center align-items-center p-0">
