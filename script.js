@@ -6,7 +6,7 @@ createApp({
       contacts: [
         {
             name: 'Michele',
-            avatar: 'img/avatar_1.jpg',
+            avatar: './img/avatar_1.jpg',
             visible: true,
             messages: [
                 {
@@ -168,6 +168,28 @@ createApp({
       ],
       counter: 0,
       newMessage: ''
+    }
+  },
+  methods:{
+    changeChat(i){
+      this.contacts[this.counter].visible = false
+
+      this.counter = i;
+
+      this.contacts[this.counter].visible = true;
+    },
+
+    createNewMessage(){
+      const createMessage = {
+        date: new Date(),
+        message: this.newMessage,
+        status: 'sent'
+      }
+
+      console.log(createMessage);
+      this.contacts.messages.include(createMessage);
+
+      this.newMessage = '';
     }
   }
 }).mount('#app')

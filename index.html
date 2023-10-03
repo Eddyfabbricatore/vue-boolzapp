@@ -8,6 +8,11 @@
   <!-- CDN VueJs -->
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
+  <!-- Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@400;500&family=Open+Sans:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
 
@@ -65,12 +70,12 @@
           </div>
         </div>
 
-        <div class="list-chat h-90">
+        <div class="list-chat h-90">         
           <div
             class="chat d-flex align-items-center"
-            :class="{'active' : contact.visible}"
             v-for="(contact, index) in contacts"
-            click="">
+            :class="{'active' : contact.visible}"
+            @click="changeChat(index)">
             <div class="chat-img ms-3">
               <img
                 class="rounded-circle"
@@ -82,14 +87,15 @@
               <div class="chat-data-info d-flex flex-column">
                 <span>{{contact.name}}</span>
 
-                <p class="mb-0">{{contact.messages[counter].message}}</p>
+                <p
+                  class="mb-0">{{contact.messages.message}}</p>
               </div>
 
               <div class="chat-data-hour">
-                <span class="me-1">{{contact.messages[counter].date}}</span>
+                <span class="me-1">{{contact.messages.date}}</span>
               </div>
             </div>
-          </div>
+          </div>          
         </div>
       </div>
 
@@ -100,7 +106,7 @@
       :class="{'hide' : !contact.visible}"
       v-for="(contact, index) in contacts">
       <div
-        class="top d-flex justify-content-between align-items-center h-10 hide">
+        class="top d-flex justify-content-between align-items-center h-10">
         <div class="user-data d-flex align-items-center ms-2">
           <div class="user-img">
             <img class="rounded-circle" :src="contact.avatar" alt="contact.name">
@@ -109,7 +115,7 @@
           <div class="user-data-info d-flex flex-column ms-2">
             <span>{{contact.name}}</span>
 
-            <p class="mb-0">{{contact.messages[counter].date}}</p>
+            <p class="mb-0">{{contact.messages[0].date}}</p>
           </div>
         </div>
 
@@ -125,24 +131,24 @@
       <div class="chat-message h-80">
         <div
           class="messages"
-          v-for="message in contact.messages">
+          v-for="(message, index) in contact.messages">
           <div
           class="message-send"
           v-if="message.status === 'sent'">
-          <div
-            class="message float-right rounded">
-            <span>{{message.message}}</span>
+            <div
+              class="message d-flex align-items-center float-right rounded">
+              <span>{{message.message}}</span>
+            </div>
           </div>
-        </div>
 
-        <div
-          class="message-received"
-          v-else-if="message.status === 'received'">
           <div
-            class="message float-left rounded">
-            <span>{{message.message}}</span>
+            class="message-received"
+            v-else-if="message.status === 'received'">
+            <div
+              class="message d-flex align-items-center float-left rounded">
+              <span>{{message.message}}</span>
+            </div>
           </div>
-        </div>
         </div>
       </div>
 
@@ -159,7 +165,7 @@
               class="form-control"
               placeholder="Scrivi un nuovo messaggio"
               v-model="newMessage"
-              keyup.enter="">
+              @keyup.enter="createNewMessage">
           </div>
 
           <div class="col-1 d-flex justify-content-center align-items-center p-0">
