@@ -238,6 +238,10 @@ createApp({
   
         this.contacts[i].messages.push(createMessageReceived);
       }, 1500)
+    },
+
+    deleteMessage(iChat, iMessage){
+      this.contacts[iChat].messages.splice(iMessage, 1);
     }
   }
 }).mount('#app')

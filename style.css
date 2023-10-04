@@ -196,6 +196,17 @@ aside .bottom .list-chat .chat .chat-data .chat-data-hour span{
   font-size: .8rem;
 }
 
+.chat-selected .chat-message .messages .message .dropdown{
+  display: none;
+  position: absolute;
+  top: 1px;
+  right: 5px;
+}
+
+.chat-selected .chat-message .messages .message:hover .dropdown{
+  display: block;
+}
+
 .chat-selected .chat-message .messages .message-send .message{
   width: 250px;
   height: 50px;
