@@ -191,7 +191,7 @@ aside .bottom .list-chat .chat .chat-data .chat-data-hour span{
 
 .chat-selected .chat-message .messages .message span:last-of-type{
   position: absolute;
-  bottom: 5px;
+  bottom: 1px;
   right: 5px;
   font-size: .8rem;
 }

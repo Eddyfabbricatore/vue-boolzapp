@@ -66,7 +66,13 @@
         <div class="search-chat d-flex align-items-center h-10">
           <div class="input-group ms-1 me-1">
             <span class="input-group-text" id="inputGroup-sizing-default"><i class="fa-solid fa-magnifying-glass"></i></span>
-            <input type="text" class="form-control" placeholder="Cerca o inizia una nuova chat">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Cerca o inizia una nuova chat"
+              v-model.trim="search"
+              @keyup="searchFor()"
+              @keyup.delete="deleteSearch()">
           </div>
         </div>
 
@@ -74,7 +80,7 @@
           <div
             class="chat d-flex align-items-center"
             v-for="(contact, index) in contacts"
-            :class="{'active' : contact.visible}"
+            :class="{'active' : contact.visible}, {'d-none' : contact.notSearch}"
             @click="changeChat(index)">
             <div class="chat-img ms-3">
               <img
@@ -88,11 +94,11 @@
                 <span>{{contact.name}}</span>
 
                 <p
-                  class="mb-0">{{contacts[index].messages[contacts[index].messages.length - 1].message}}</p>
+                  class="mb-0">{{contacts[index].messages.at(- 1).message}}</p>
               </div>
 
               <div class="chat-data-hour">
-                <span class="me-1">{{getHour(contacts[index].messages[contacts[index].messages.length - 1].date)}}</span>
+                <span class="me-1">{{getHour(contacts[index].messages.at(- 1).date)}}</span>
               </div>
             </div>
           </div>          
@@ -166,7 +172,7 @@
               type="text"
               class="form-control"
               placeholder="Scrivi un nuovo messaggio"
-              v-model="newMessage"
+              v-model.trim="newMessage"
               @keyup.enter="createNewMessage(index)">
           </div>
 
